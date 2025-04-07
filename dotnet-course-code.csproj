@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>dotnet_course_code</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.66" />
+    <PackageReference Include="Microsoft.data.sqlclient" Version="6.0.1" />
+    <PackageReference Include="Microsoft.entityframeworkcore" Version="9.0.3" />
+    <PackageReference Include="Microsoft.entityframeworkcore.sqlserver" Version="9.0.3" />
+  </ItemGroup>
+
+</Project>
