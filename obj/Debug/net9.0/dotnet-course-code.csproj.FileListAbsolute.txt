@@ -78,3 +78,5 @@ C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\bin\Debug\net9.0\Microsoft.Ex
 C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Physical.dll
 C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\bin\Debug\net9.0\Microsoft.Extensions.FileSystemGlobbing.dll
 C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\bin\Debug\net9.0\appsetting.json
+C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\bin\Debug\net9.0\Newtonsoft.Json.dll
+C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\bin\Debug\net9.0\AutoMapper.dll
