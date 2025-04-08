@@ -3,13 +3,20 @@ using System.Data;
 
 using Microsoft.Data.SqlClient;
 using Dapper;
+using Microsoft.Extensions.Configuration;
 
 namespace HelloWorld.Data
 {
     public class DatacontextDapper
     {
-    private string _connectionString = "Server=localhost;Database=DotNetCourseDatabase;TrustServerCertificate=True;Trusted_Connection=True;";
-    public IEnumerable<T> LoadData<T>(string sql)
+      // private IConfiguration _config;
+    private string? _connectionString ;
+    public DatacontextDapper(IConfiguration config)
+      {
+        // _config = config;
+         _connectionString = config.GetConnectionString("DefaultConnection");
+      }
+        public IEnumerable<T> LoadData<T>(string sql)
     {
       IDbConnection dbConnection = new SqlConnection(_connectionString);
       return dbConnection.Query<T>(sql);

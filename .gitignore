@@ -1,0 +1,27 @@
+# Build
+bin/
+obj/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Rider / VS
+.idea/
+*.user
+*.suo
+
+# Packages & publish
+packages/
+*.nupkg
+*.snupkg
+publish/
+
+# Logs & temp
+*.log
+temp/
+TestResults/
+
+# OS
+.DS_Store
+Thumbs.db

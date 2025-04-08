@@ -9,6 +9,7 @@ using Dapper;
 using HelloWorld.Models;
 using Microsoft.Data.SqlClient;
 using HelloWorld.Data;
+using Microsoft.Extensions.Configuration;
 
 namespace HelloWorld
 {
@@ -19,7 +20,14 @@ namespace HelloWorld
       // string connectionString = "Server=localhost;Database=DotNetCourseDatabase;TrustServerCertificate=True;Trusted_Connection=True;";
       // IDbConnection dbConnection = new SqlConnection(connectionString);
       // string sqlCommand = "SELECT GETDATE()";
-      DatacontextDapper dapper = new DatacontextDapper();
+      IConfiguration config = new ConfigurationBuilder()
+        .AddJsonFile("appsetting.json" )
+        .Build();
+       
+      DatacontextDapper dapper = new DatacontextDapper(config);
+      DataContextEF entityFramework = new DataContextEF(config);
+
+
       DateTime rightNow = dapper.LoadDatasingle<DateTime>("SELECT GETDATE()");
       Console.WriteLine(rightNow);
 
@@ -33,6 +41,13 @@ namespace HelloWorld
         Price = 999.99m,
         VideoCard = "NVIDIA RTX 3080"
       };
+
+      entityFramework.Add(computer);
+      entityFramework.SaveChanges();
+
+
+
+
       // computer.HasWifi = false;
       // Console.WriteLine($"Motherboard: {computer.Motherboard}");
       // Console.WriteLine($"CPU Cores: {computer.CPUCores}");
@@ -49,20 +64,39 @@ namespace HelloWorld
       string sqlSelect = @"
       SELECT
        
-     Computer.Motherboard,  Computer.CPUCores,  Computer.HasWifi,  Computer.ReleaseDate,  Computer.Price,  Computer.VideoCard
+     Computer.ComputerId, Computer.Motherboard,  Computer.CPUCores,  Computer.HasWifi,  Computer.ReleaseDate,  Computer.Price,  Computer.VideoCard
       FROM TutorialAppSchema.Computer";
 
       IEnumerable<Computer> computers = dapper.LoadData<Computer>(sqlSelect);
+      // IEnumerable<Computer>? computerEf = entityFramework.Computer?.ToList<Computer>();
 
-      Console.WriteLine("'Motherboard','hasWifi','ReleaseDate','Price','VideoCard'");
+
+
+
+      Console.WriteLine("'ComputerId','Motherboard','hasWifi','ReleaseDate','Price','VideoCard'");
       Console.WriteLine("--------------------------------------------------");
 
 
       foreach (Computer singleComputer in computers)
       {
-        Console.WriteLine("'" + computer.Motherboard + "', '" + computer.CPUCores + "', '" + computer.HasWifi + "', '" + computer.ReleaseDate + "', '" + computer.Price + "', '" + computer.VideoCard + "'");
-       
+        Console.WriteLine("'" + singleComputer.ComputerId + "', '" + "'" + singleComputer.Motherboard + "', '" + singleComputer.CPUCores + "', '" + singleComputer.HasWifi + "', '" + singleComputer.ReleaseDate + "', '" + singleComputer.Price + "', '" + singleComputer.VideoCard + "'");
+
       }
+      IEnumerable<Computer>? computerEf = entityFramework.Computer?.ToList<Computer>();
+
+      if(computerEf != null)
+      {
+        Console.WriteLine("'ComputerId','Motherboard','hasWifi','ReleaseDate','Price','VideoCard'");
+        Console.WriteLine("--------------------------------------------------");
+
+
+        foreach (Computer singleComputer in computerEf)
+        {
+          Console.WriteLine("'" + singleComputer.ComputerId + "', '" + "'" + singleComputer.Motherboard + "', '" + singleComputer.CPUCores + "', '" + singleComputer.HasWifi + "', '" + singleComputer.ReleaseDate + "', '" + singleComputer.Price + "', '" + singleComputer.VideoCard + "'");
+
+        }
+      }
+      
     }
   }
 }

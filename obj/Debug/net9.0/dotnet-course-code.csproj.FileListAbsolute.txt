@@ -70,3 +70,11 @@ C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\bin\Debug\net9.0\runtimes\win
 C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\obj\Debug\net9.0\dotnet-course-code.csproj.AssemblyReference.cache
 C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\obj\Debug\net9.0\dotnet-c.DC6F8969.Up2Date
+C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\obj\Debug\net9.0\dotnet-course-code.sourcelink.json
+C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\bin\Debug\net9.0\Microsoft.Extensions.Configuration.dll
+C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\bin\Debug\net9.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\bin\Debug\net9.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\ritaw\OneDrive\Desktop\dotnet-course-code\bin\Debug\net9.0\appsetting.json

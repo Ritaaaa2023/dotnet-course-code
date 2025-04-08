@@ -1,0 +1,5 @@
+{
+  "connectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=DotNetCourseDatabase;TrustServerCertificate=True;Trusted_Connection=True;"
+  }
+}

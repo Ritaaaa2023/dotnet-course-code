@@ -2,6 +2,7 @@ namespace HelloWorld.Models
 {
     public class Computer
     {
+        public int ComputerId { get; set; } // ✅ No warning — has default VALUE
         public string Motherboard { get; set; } = ""; // ✅ No warning — has default VALUE 
 
         public int CPUCores { get; set; }
