@@ -19,65 +19,103 @@ namespace HelloWorld
 {
   class Program
   {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
-      // string connectionString = "Server=localhost;Database=DotNetCourseDatabase;TrustServerCertificate=True;Trusted_Connection=True;";
-      // IDbConnection dbConnection = new SqlConnection(connectionString);
-      // string sqlCommand = "SELECT GETDATE()";
-      IConfiguration config = new ConfigurationBuilder()
-        .AddJsonFile("appsetting.json" )
-        .Build();
-       
-      DatacontextDapper dapper = new DatacontextDapper(config);
+      Task firstTask = new Task(() => { 
+        Thread.Sleep(100);
+        Console.WriteLine("Task 1 ");
+         });
 
-      string computersJson = File.ReadAllText("ComputersSnake.json");
-      
-      // Mapper mapper = new Mapper(new MapperConfiguration((cfg)=>{
-      //   cfg.CreateMap<ComputerSnake,Computer>()
-      //     .ForMember(destination => destination.ComputerId, opt => opt.MapFrom(src => src.computer_id))
-      //   .ForMember(destination => destination.Motherboard, opt => opt.MapFrom(src => src.motherboard))
-      //   .ForMember(destination => destination.CPUCores, opt => opt.MapFrom(src => src.cpu_cores))
-      //   .ForMember(destination => destination.HasWifi, opt => opt.MapFrom(src => src.has_wifi))
-      //   .ForMember(destination => destination.ReleaseDate, opt => opt.MapFrom(src => src.release_date))
-      //   .ForMember(destination => destination.Price, opt => opt.MapFrom(src => src.price * .8m))
-      //   .ForMember(destination => destination.VideoCard, opt => opt.MapFrom(src => src.video_card));   
-      // }));
+         firstTask.Start();
+         Task secondTask = ConsoleAfterDelayAsync("Task 2",150);
+         ConsoleAfterDelay("Delay", 101);
+         Task thirdTask = ConsoleAfterDelayAsync("Task 3", 50);
+         
+         await secondTask;
+         await firstTask;
+         
+      Console.WriteLine("Task 1 was started");
+      await thirdTask;
 
-       IEnumerable<Computer>? computerSystem = JsonConvert.DeserializeObject<IEnumerable<Computer>>(computersJson);
-      if(computerSystem != null)
-      {
-        // IEnumerable<Computer> computerResult = mapper.Map<IEnumerable<Computer>>(computerSystem);
+    }
 
-        foreach(Computer computer in computerSystem)
-        {
-          Console.WriteLine($"Motherboard: {computer.Motherboard}");
-        }
-      }
+    static void ConsoleAfterDelay(string text, int delayTime)
+    {
+      Thread.Sleep(delayTime);
+      Console.WriteLine(text);
+    }
+
+    static async Task ConsoleAfterDelayAsync(string text, int delayTime)
+    {
+     await Task.Delay(delayTime);
+      Console.WriteLine(text);
+    }
 
 
-      // string  computersJson = File.ReadAllText("Computers.json");
-      // Console.WriteLine(computersJson);
-
-      // JsonSerializerOptions options = new JsonSerializerOptions()
-      // {
-      //   PropertyNameCaseInsensitive = true,
-      //   WriteIndented = true
-      // };
-
-      //  IEnumerable<Computer>? computers = JsonConvert.DeserializeObject<IEnumerable<Computer>>(computersJson);
 
 
-      // if(computers != null)
-      // {
-      //   foreach(Computer computer in computers)
-      //   {
-      //     // Console.WriteLine($"Motherboard: {computer.Motherboard}");
-      //     string sql = @"INSERT INTO TutorialAppSchema.Computer (Motherboard, CPUCores, HasWifi, ReleaseDate, Price, VideoCard) VALUES(
-      //  '" + EscapeSingleQuotes(computer.Motherboard ?? string.Empty) + "','" + computer.CPUCores + "','" + computer.HasWifi + "','" + computer.ReleaseDate + "','" + computer.Price + "','" + EscapeSingleQuotes(computer.VideoCard ?? string.Empty) + "')";
-      //       dapper.ExecuteSql(sql);
 
-      //   }
-      // }
+
+
+    // string connectionString = "Server=localhost;Database=DotNetCourseDatabase;TrustServerCertificate=True;Trusted_Connection=True;";
+    // IDbConnection dbConnection = new SqlConnection(connectionString);
+    // string sqlCommand = "SELECT GETDATE()";
+    // IConfiguration config = new ConfigurationBuilder()
+    //   .AddJsonFile("appsetting.json" )
+    //   .Build();
+
+    // DatacontextDapper dapper = new DatacontextDapper(config);
+
+    // string computersJson = File.ReadAllText("ComputersSnake.json");
+
+    // Mapper mapper = new Mapper(new MapperConfiguration((cfg)=>{
+    //   cfg.CreateMap<ComputerSnake,Computer>()
+    //     .ForMember(destination => destination.ComputerId, opt => opt.MapFrom(src => src.computer_id))
+    //   .ForMember(destination => destination.Motherboard, opt => opt.MapFrom(src => src.motherboard))
+    //   .ForMember(destination => destination.CPUCores, opt => opt.MapFrom(src => src.cpu_cores))
+    //   .ForMember(destination => destination.HasWifi, opt => opt.MapFrom(src => src.has_wifi))
+    //   .ForMember(destination => destination.ReleaseDate, opt => opt.MapFrom(src => src.release_date))
+    //   .ForMember(destination => destination.Price, opt => opt.MapFrom(src => src.price * .8m))
+    //   .ForMember(destination => destination.VideoCard, opt => opt.MapFrom(src => src.video_card));   
+    // }));
+
+    //  IEnumerable<Computer>? computerSystem = JsonConvert.DeserializeObject<IEnumerable<Computer>>(computersJson);
+    // if(computerSystem != null)
+    // {
+    //   IEnumerable<Computer> computerResult = mapper.Map<IEnumerable<Computer>>(computerSystem);
+    //   Console.WriteLine(computerResult.Count());
+
+    // foreach(Computer computer in computerSystem)
+    // {
+    //   // Console.WriteLine($"Motherboard: {computer.Motherboard}");
+
+    // }
+    // }
+    // 
+
+    // string  computersJson = File.ReadAllText("Computers.json");
+    // Console.WriteLine(computersJson);
+
+    // JsonSerializerOptions options = new JsonSerializerOptions()
+    // {
+    //   PropertyNameCaseInsensitive = true,
+    //   WriteIndented = true
+    // };
+
+    //  IEnumerable<Computer>? computers = JsonConvert.DeserializeObject<IEnumerable<Computer>>(computersJson);
+
+
+    // if(computers != null)
+    // {
+    //   foreach(Computer computer in computers)
+    //   {
+    //     // Console.WriteLine($"Motherboard: {computer.Motherboard}");
+    //     string sql = @"INSERT INTO TutorialAppSchema.Computer (Motherboard, CPUCores, HasWifi, ReleaseDate, Price, VideoCard) VALUES(
+    //  '" + EscapeSingleQuotes(computer.Motherboard ?? string.Empty) + "','" + computer.CPUCores + "','" + computer.HasWifi + "','" + computer.ReleaseDate + "','" + computer.Price + "','" + EscapeSingleQuotes(computer.VideoCard ?? string.Empty) + "')";
+    //       dapper.ExecuteSql(sql);
+
+    //   }
+    // }
 
     //   JsonSerializerSettings settings = new JsonSerializerSettings()
     //     {
@@ -172,6 +210,6 @@ namespace HelloWorld
     //   }
 
 
+
   }
-}
 }
